@@ -10,11 +10,13 @@
       real*8,parameter :: AHe=0.08, chi1=1.+AHe, chi2=1.+2.*AHe
       real*8,dimension(100) :: frac_m, frac_v, z, tau_es, tau_es_full
       real*8 :: tau0, coeff, zred
+      character(len=2048) :: file_in,file_out
+      call getarg(1, file_in)
+      call getarg(2, file_out)
+      open(1,file=trim(adjustl(file_in)))
+      open(2,file=trim(adjustl(file_out)))
 
-      open(1,file='patchy_infall.log')
-      open(2,file='patchy_infall.tau')
-
-      do i=1,100
+      do i=1,200
          read(1,*,end=10) z(i),frac_v(i),frac_m(i)  
       end do
  10   n=i-1
